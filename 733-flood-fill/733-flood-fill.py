@@ -10,13 +10,12 @@ class Solution(object):
         rows, columns = len(image), len(image[0])
         color=image[sr][sc]
         if image[sr][sc] == newColor: return image
-        def dsa(r,c):
-            if r<0 or c<0 or r>rows-1 or c>columns-1 or image[r][c] == newColor or image[r][c] != color:
-                return
-            image[r][c] = newColor
-            dsa(r+1,c)
-            dsa(r-1,c)
-            dsa(r,c+1)
-            dsa(r,c-1)  
-        dsa(sr,sc)
+        def dfs(r,c):
+            if image[r][c] == color:
+                image[r][c]= newColor
+                if r >= 1: dfs(r-1,c)
+                if r+1 < rows:dfs(r+1,c)
+                if c >= 1: dfs(r,c-1)
+                if c+1 < columns: dfs(r,c+1)
+        dfs(sr,sc)
         return image
