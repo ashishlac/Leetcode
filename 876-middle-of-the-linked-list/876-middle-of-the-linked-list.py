@@ -9,14 +9,13 @@ class Solution(object):
         :type head: ListNode
         :rtype: ListNode
         """
-        count = 0
-        temp=head
-        while temp is not None:
-            count += 1
-            temp = temp.next
-        count =  (count / 2) + 1
-        while count is not 1:
-            count -= 1
+        if head is None or head.next is None:
+            return head
+        fast= head
+        while fast is not None:
+            fast = fast.next
+            if fast is None:
+                return head
+            fast = fast.next
             head = head.next
-            
         return head
