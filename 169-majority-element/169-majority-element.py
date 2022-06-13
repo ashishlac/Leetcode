@@ -10,11 +10,10 @@ class Solution(object):
             return l
         l=l/2
         for num in nums:
-            
             if num not in hashmap:
                 hashmap[num]=0
             hashmap[num] += 1
+            if hashmap[num] > l:
+                return num
             
-        for key in hashmap:
-            if hashmap[key] > l:
-                return key
+           
