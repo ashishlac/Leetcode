@@ -12,10 +12,8 @@ class Solution(object):
         if head is None or head.next is None:
             return head
         fast= head
-        while fast is not None:
-            fast = fast.next
-            if fast is None:
-                return head
-            fast = fast.next
+        while fast and fast.next:
             head = head.next
+            fast = fast.next.next
+           
         return head
