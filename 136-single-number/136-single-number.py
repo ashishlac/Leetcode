@@ -4,11 +4,12 @@ class Solution(object):
         :type nums: List[int]
         :rtype: int
         """
-        
-        l = len(nums)
-
-        for i in range(0,l):
-            if nums[i] not in nums[0:i] and nums[i] not in nums[i+1:l]:
-                return nums[i]
-        
+    
+        dic = {}
+        for num in nums:
+            dic[num] = dic.get(num,0) + 1
+        for key, val in dic.items():
+            if val == 1:
+                return key
+            
         return False
