@@ -5,7 +5,5 @@ class Solution(object):
         :type b: str
         :rtype: str
         """
-      
-        total = int(a,2) + int(b,2)
            
-        return format(total,"b")
+        return format(int(a,2) + int(b,2),"b")
