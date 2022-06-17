@@ -5,45 +5,20 @@
 #         self.left = left
 #         self.right = right
 class Solution(object):
-    def isSubtree(self, root, subRoot):
+    def isSubtree(self, s, t):
         
         """
         :type root: TreeNode
         :type subRoot: TreeNode
         :rtype: bool
         """
-        if not root and not subRoot:
+        if not s: 
+            return False
+        if self.isSameTree(s, t): 
             return True
-        if not root or not subRoot:
-            return False
-        self.present = False
-        def rec1(root,subRoot):
-            if not root and not subRoot:
-                return True
-            if not root or not subRoot:
-                return False
-            if root.val == subRoot.val:
-                res = rec2(root,subRoot)
-                if res:
-                    self.present = True
-                    print("returning True")
-                    return res
-            rec1(root.left,subRoot)
-            rec1(root.right,subRoot)
-            print("coming to the end")
-            return False
-        def rec2(root,subRoot):
-            if not root and not subRoot:
-                return True
-            if not root or not subRoot:
-                return False
-            if root.val == subRoot.val:
-                return rec2(root.left,subRoot.left) and rec2(root.right, subRoot.right)
-            else:
-                return False
+        return self.isSubtree(s.left, t) or self.isSubtree(s.right, t)
 
-        rec1(root,subRoot)
-        return self.present
-        
-              
-    
+    def isSameTree(self,p, q):
+        if p and q:
+            return p.val == q.val and self.isSameTree(p.left, q.left) and self.isSameTree(p.right, q.right)
+        return p is q
